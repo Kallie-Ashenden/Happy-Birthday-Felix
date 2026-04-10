@@ -30,6 +30,7 @@ main {
 
 /* === Birthday text block === */
 .birthday-text {
+  position: relative; /* starburst positions against this */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,6 +68,74 @@ main {
     8px  8px 0 #7f0051,
     10px 10px 12px rgba(0, 0, 0, 0.5);
   letter-spacing: 0.03em;
+}
+
+/* === Starburst === */
+.starburst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(720px, 90vw);
+  height: min(720px, 90vw);
+  border-radius: 50%;
+  /* alternating gold and pink rays */
+  background: conic-gradient(
+    #ffd700 0deg 12deg,   transparent 12deg 24deg,
+    #ff6ec7 24deg 36deg,  transparent 36deg 48deg,
+    #ffd700 48deg 60deg,  transparent 60deg 72deg,
+    #ff6ec7 72deg 84deg,  transparent 84deg 96deg,
+    #ffd700 96deg 108deg, transparent 108deg 120deg,
+    #ff6ec7 120deg 132deg,transparent 132deg 144deg,
+    #ffd700 144deg 156deg,transparent 156deg 168deg,
+    #ff6ec7 168deg 180deg,transparent 180deg 192deg,
+    #ffd700 192deg 204deg,transparent 204deg 216deg,
+    #ff6ec7 216deg 228deg,transparent 228deg 240deg,
+    #ffd700 240deg 252deg,transparent 252deg 264deg,
+    #ff6ec7 264deg 276deg,transparent 276deg 288deg,
+    #ffd700 288deg 300deg,transparent 300deg 312deg,
+    #ff6ec7 312deg 324deg,transparent 324deg 336deg,
+    #ffd700 336deg 348deg,transparent 348deg 360deg
+  );
+  transform: translate(-50%, -50%) scale(0) rotate(0deg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.birthday-text.show-effects .starburst {
+  animation: burst-appear 1s ease-out forwards;
+}
+
+@keyframes burst-appear {
+  0%   { transform: translate(-50%, -50%) scale(0)   rotate(0deg);  opacity: 1; }
+  50%  { transform: translate(-50%, -50%) scale(1.1) rotate(18deg); opacity: 0.85; }
+  100% { transform: translate(-50%, -50%) scale(1.5) rotate(30deg); opacity: 0; }
+}
+
+/* === Fireworks === */
+.firework {
+  position: fixed;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.firework__particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: particle-fly 1s ease-out forwards;
+}
+
+@keyframes particle-fly {
+  0%   {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateX(var(--distance));
+    opacity: 0;
+  }
 }
 
 /* === Spin animation === */
