@@ -12,8 +12,8 @@
 What we're building toward right now. Tasks here are in sequence —
 complete them in order, top to bottom.
 
-- 🟡 Stage 1 — HTML skeleton: `index.html` + `404.html` with correct structure, linked CSS/JS files, and `?name` param placeholder
-- 🔴 Stage 2 — 3D text styling: CSS-only 3D "Happy Birthday [NAME]" using `text-shadow` layering or `transform: perspective()` — centred, mobile-first, birthday colour palette
+- ~~Stage 1 — HTML skeleton: `index.html` + `404.html` with correct structure, linked CSS/JS files, and `?name` param placeholder~~
+- 🟡 Stage 2 — 3D text styling: CSS-only 3D "Happy Birthday [NAME]" using `text-shadow` layering or `transform: perspective()` — centred, mobile-first, birthday colour palette
 - 🔴 Stage 3 — Name injection: `main.js` reads `?name=` from URL and writes it into the DOM; falls back to `"Friend"` if absent
 - 🔴 Stage 4 — Spin interaction: clicking the text triggers a full 3D CSS spin animation via a JS-toggled class
 - 🔴 Stage 5 — Polish & cross-device check: verify layout on mobile viewport, smooth animation, fallback font, final tweaks
@@ -29,6 +29,8 @@ complete them in order, top to bottom.
 ---
 
 ## Done
+
+- ~~Stage 1 — HTML skeleton~~
 
 ---
 
