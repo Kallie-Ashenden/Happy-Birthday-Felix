@@ -7,16 +7,28 @@
   var params = new URLSearchParams(window.location.search);
   var name = params.get('name') || 'Friend';
   document.getElementById('birthdayName').textContent = name;
+  document.title = 'Happy Birthday, ' + name + '!';
+
+  // --- Reduced motion ---
+  // Respect the OS preference — skip animations if requested.
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // --- Spin interaction ---
-  // Clicking the text block adds .is-spinning, triggering the CSS animation.
-  // Removing and re-adding the class (with a forced reflow) allows the
-  // animation to restart cleanly if clicked while already spinning.
-  var el = document.getElementById('birthdayText');
+  var el   = document.getElementById('birthdayText');
+  var hint = document.getElementById('clickHint');
 
   el.addEventListener('click', function () {
+    // Dismiss the hint on first interaction
+    if (hint) {
+      hint.classList.add('is-hidden');
+    }
+
+    if (reducedMotion) return;
+
+    // Remove and re-add the class (with a forced reflow) so clicking
+    // mid-spin restarts the animation cleanly.
     el.classList.remove('is-spinning');
-    void el.offsetWidth; // force reflow so the browser registers the removal
+    void el.offsetWidth;
     el.classList.add('is-spinning');
   });
 
@@ -37,6 +49,8 @@
   var COLORS = ['#ffd700', '#ff6ec7', '#ff4d4d', '#44dd88', '#66aaff', '#ff8844'];
 
   function launchFireworks() {
+    if (reducedMotion) return;
+
     var BURST_COUNT = 6;
     var PARTICLES_PER_BURST = 14;
 
@@ -62,7 +76,6 @@
             burst.appendChild(particle);
           }
 
-          // Remove the burst element once particles have finished
           setTimeout(function () { burst.remove(); }, 1500);
         }, delay);
       }(b * 180));
