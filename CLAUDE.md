@@ -1,30 +1,34 @@
-# [Project Name] — Claude Code Instructions
+# Happy Birthday Card — Claude Code Instructions
 
 ## Read First
 
 Before making **any** change to this codebase:
 
 1. Read `ROADMAP.md` in full. Confirm your change does not conflict with or make harder any planned work. If it does, flag the conflict and ask before proceeding.
-2. Check the design system page at `/[ds-location]/` (if one exists) for established patterns, components, and design tokens.
+2. Check the design system page at `/ds/index.html` (if one exists) for established patterns, components, and design tokens.
 
 ---
 
 ## What This App Is
 
-<!-- One-paragraph description of the project purpose, who uses it, and how it's deployed. Fill this in when bootstrapping the project. -->
+Happy Birthday Card is a single-page static web app that displays a personalised 5th birthday message. The page renders "Happy Birthday [NAME]" in large 3D text, where the name is supplied via a URL query parameter (e.g. `?name=Felix`). Clicking the text triggers a 3D spin animation. There is no backend — the app is a fully static HTML/CSS/JS site deployed to Netlify.
 
 ---
 
 ## File Structure
-
-<!-- Document the file structure here once established. Keep this up to date as files are added or moved. -->
 
 ```
 /
 ├── CLAUDE.md               # This file — Claude Code instructions
 ├── ROADMAP.md              # Feature roadmap and task backlog (source of truth)
 ├── README.md               # Project overview, setup, and usage
-└── ...
+├── netlify.toml            # Netlify build + redirect + header config
+├── 404.html                # Custom 404 page (required by netlify.toml redirects)
+├── index.html              # Main page — markup only, no inline CSS/JS
+├── css/
+│   └── styles.css          # All styles: layout, 3D text, animations
+└── js/
+    └── main.js             # URL param parsing + spin interaction logic
 ```
 
 ---
@@ -70,19 +74,29 @@ Before making **any** change to this codebase:
 
 ## Data Formats
 
-<!-- Document any data schemas (JSON structures, database models, etc.) here so Claude can reference them when editing data files. -->
+**URL parameters**
+
+The app reads a single query parameter:
+
+| Parameter | Type   | Example       | Notes                              |
+|-----------|--------|---------------|------------------------------------|
+| `name`    | string | `?name=Felix` | Falls back to `"Friend"` if absent |
+
+No other data sources or schemas exist.
 
 ---
 
 ## Deployment
 
-<!-- Document how the app is deployed: platform, build steps, environment variables, and any post-deploy steps. -->
+- **Platform:** Netlify (static hosting, no build step)
+- **Publish directory:** `.` (repo root)
+- **Deploy trigger:** Push to `main` branch
+- **Config file:** `netlify.toml` (redirects, security headers, publish dir)
+- **Environment variables:** None required
+- **Post-deploy steps:** None — visit the Netlify-assigned URL to verify
 
 ---
 
 ## Design System
-
-<!-- Record the design system page location here once established. Example: -->
-<!-- Design system: `/ds/index.html` -->
 
 ⚠️ **No design system page has been set up yet.** When UI work begins, ask about creating one.
