@@ -69,6 +69,16 @@ main {
   letter-spacing: 0.03em;
 }
 
+/* === Spin animation === */
+@keyframes spin3d {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(360deg); }
+}
+
+.birthday-text.is-spinning {
+  animation: spin3d 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* === 404 page === */
 .not-found {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
