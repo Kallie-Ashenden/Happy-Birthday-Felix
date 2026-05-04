@@ -39,3 +39,4 @@ complete them in order, top to bottom.
 - Consider Open Graph / social preview meta tags so shared links show a nice preview
 - Explore CSS `@keyframes` with `transform: rotateY` vs JS-driven Web Animations API — prototype if behaviour feels janky on mobile
 - Add a simple design system page (`/ds/index.html`) once colours, fonts, and animation tokens are settled
+- Animated SVG dot background (`js/dot-pattern.js`): diagonal wave + click/tap ripple. Tune `SPACING`, `WAVE_FREQ`, opacity range, and ripple decay constants if needed for different feel or mobile perf
